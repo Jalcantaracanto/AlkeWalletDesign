@@ -12,25 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlkeWallet"
         tools:targetApi="31">
+
+
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeEmptyCase"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity
-            android:name=".fragments.LoginPageFragment"
-            android:exported="false" />
-        <activity
-            android:name=".fragments.LoginSignupFragment"
-            android:exported="false" />
-        <activity
-            android:name=".HomeEmptyCase"
-            android:exported="false" />
         <activity
             android:name=".SendMoney"
             android:exported="false" />
@@ -43,6 +35,11 @@
         <activity
             android:name=".RequestMoney"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SignupPage"
