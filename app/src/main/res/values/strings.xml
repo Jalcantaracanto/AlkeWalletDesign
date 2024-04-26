@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">AlkeWallet</string>
+    <string name="alreadyHaveAnAccount">Ya tengo cuenta</string>
+    <string name="loginpage_title">Logea y empieza a transferir!</string>
+    <string name="crear_cuenta_nueva">Crear cuenta nueva</string>
+    <string name="email">Email</string>
+    <string name="pass">Contraseña</string>
+    <string name="forgetPassword">Olvidaste tu contraseña?</string>
+    <string name="header">Header</string>
+    <string name="home_inicio">Inicio</string>
+    <string name="campaign_notification">Notificación</string>
+    <string name="currency">$124.57</string>
+    <string name="total_balance">Balance Total</string>
+    <string name="hello_name">Hola, Amanda!</string>
+    <string name="send_money">Enviar Dinero</string>
+    <string name="get_money">Ingresar Dinero</string>
+    <string name="last_transaccion_text">Ultimas transacciones</string>
+    <string name="not_transactions_text">not_transactions</string>
+    <string name="no_hay_transacciones_registradas">No hay transacciones registradas!</string>
+    <string name="image_profile">image_profile</string>
+    <string name="text_inicio">Inicio</string>
+    <string name="title_activity_nav_graph">nav_graph</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

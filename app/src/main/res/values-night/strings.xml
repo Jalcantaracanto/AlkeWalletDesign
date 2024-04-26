@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">Email</string>
+    <string name="header">Header</string>
+    <string name="campaign_notification">Notificación</string>
+    <string name="text_inicio">Inicio</string>
+</resources>
