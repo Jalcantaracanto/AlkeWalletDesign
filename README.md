@@ -5,7 +5,7 @@ Tercer trabajo realizado para bootcammp fullstack android. Se realiza para adqui
 <div align="center" >
 </br>
 
-   ![Imagen](https://github.com/Jalcantaracanto/WalletJava/blob/master/assets/img/MenuInicial.png)
+   <img src="https://github.com/Jalcantaracanto/AlkeWalletDesign/blob/main/assets/splash-screen.png" width="200" height="auto">
    
 </div>
 
