@@ -31,11 +31,14 @@ Está tercera etapa esta finalizada, donde se creo el diseño de la Wallet solic
    </li>
  </ul>
 
+<!--
 # Conclusión
 
 <p align="justify">
 En conclusión, "Alke Wallet" es un proyecto desarrollado como parte del bootcamp fullstack de Android, que proporciona una solución segura y conveniente para administrar activos financieros digitalmente. Implementado en Java y utilizando Programación Orientada a Objetos (POO), este proyecto aborda los requisitos otorgados y la conversión de moneda. A través de su interfaz, los usuarios pueden realizar transacciones, consultar sus saldos y realizar cambios de moneda. Aunque actualmente se encuentra en sus primeras etapas, se espera que evolucione a medida que avance el bootcamp.
 </p>
+
+-->
 
 <!--
 *[Acceso al proyecto](#acceso-proyecto)
