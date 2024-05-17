@@ -1,15 +1,15 @@
-package com.example.alkewallet.fragments
+package com.example.alkewallet.feature.presentation.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import com.example.alkewallet.R
 
-class LoginPageFragment : Fragment() {
+class LoginSignupFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -21,7 +21,7 @@ class LoginPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_page, container, false)
+        return inflater.inflate(R.layout.fragment_login_signup, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,8 +29,10 @@ class LoginPageFragment : Fragment() {
 
         val navController = findNavController(view)
 
-        val btn_login = view.findViewById<Button>(R.id.btn_login)
+        val txtAccount = view.findViewById<TextView>(R.id.textIHaveAccount)
 
-        btn_login.setOnClickListener { v: View? -> navController.navigate(R.id.homePageFragment) }
+        txtAccount.setOnClickListener { v: View? ->
+            navController.navigate(R.id.loginPageFragment)
+        }
     }
 }

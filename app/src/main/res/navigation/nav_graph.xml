@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginSignupFragment2">
+    app:startDestination="@id/loginPageFragment">
     <fragment
         android:id="@+id/loginSignupFragment2"
-        android:name="com.example.alkewallet.fragments.LoginSignupFragment"
+        android:name="com.example.alkewallet.feature.presentation.ui.fragments.LoginSignupFragment"
         android:label="fragment_login_signup"
         tools:layout="@layout/fragment_login_signup" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginPageFragment"
-        android:name="com.example.alkewallet.fragments.LoginPageFragment"
+        android:name="com.example.alkewallet.feature.presentation.ui.fragments.LoginPageFragment"
         android:label="fragment_login_page"
         tools:layout="@layout/fragment_login_page" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="com.example.alkewallet.fragments.HomePageFragment"
+        android:name="com.example.alkewallet.feature.presentation.ui.fragments.HomePageFragment"
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" >
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/requestMoneyFragment"
-        android:name="com.example.alkewallet.fragments.RequestMoneyFragment"
+        android:name="com.example.alkewallet.feature.presentation.ui.fragments.RequestMoneyFragment"
         android:label="fragment_request_money"
         tools:layout="@layout/fragment_request_money" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/sendMoneyFragment"
-        android:name="com.example.alkewallet.fragments.SendMoneyFragment"
+        android:name="com.example.alkewallet.feature.presentation.ui.fragments.SendMoneyFragment"
         android:label="fragment_send_money"
         tools:layout="@layout/fragment_send_money" >
         <action

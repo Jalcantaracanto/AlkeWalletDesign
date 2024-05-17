@@ -1,4 +1,4 @@
-package com.example.alkewallet.fragments
+package com.example.alkewallet.feature.presentation.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

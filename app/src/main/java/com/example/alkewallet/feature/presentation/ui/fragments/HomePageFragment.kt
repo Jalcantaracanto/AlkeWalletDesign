@@ -1,4 +1,4 @@
-package com.example.alkewallet.fragments
+package com.example.alkewallet.feature.presentation.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,21 +7,26 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alkewallet.R
+import com.example.alkewallet.feature.presentation.adapter.TransferenciaAdapter
+import com.example.alkewallet.databinding.FragmentHomePageBinding
+import com.example.alkewallet.feature.data.model.Transferencia
 
 class HomePageFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (arguments != null) {
-        }
-    }
+
+    private lateinit var binding: FragmentHomePageBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page, container, false)
+        binding = FragmentHomePageBinding.inflate(inflater, container, false)
+        initAdapter()
+
+        return binding.root
     }
 
 
@@ -36,4 +41,17 @@ class HomePageFragment : Fragment() {
         btn_request.setOnClickListener { v: View? -> navController.navigate(R.id.requestMoneyFragment) }
         btn_send.setOnClickListener { v: View? -> navController.navigate(R.id.sendMoneyFragment) }
     }
+
+    fun initAdapter() {
+
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerTransferencias.layoutManager = linearLayoutManager
+
+        val transferenciaAdapter = TransferenciaAdapter()
+        transferenciaAdapter.transferencias = Transferencia.dataTransferencias
+        binding.recyclerTransferencias.adapter = transferenciaAdapter
+
+    }
+
+
 }

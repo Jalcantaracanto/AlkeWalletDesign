@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.LoginPageFragment"
+    tools:context=".feature.presentation.ui.fragments.LoginPageFragment"
     android:background="@color/white">
 
     <ImageView
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:hint="Ingresar tu contraseña"
             android:inputType="textPassword"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

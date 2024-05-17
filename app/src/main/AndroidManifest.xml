@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AlkeWallet"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".feature.presentation.ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +23,10 @@
 
         </activity>
         <activity
-            android:name=".fragments.LoginPageFragment"
+            android:name=".feature.presentation.ui.fragments.LoginPageFragment"
             android:exported="false" />
         <activity
-            android:name=".fragments.LoginSignupFragment"
+            android:name=".feature.presentation.ui.fragments.LoginSignupFragment"
             android:exported="false" />
 
         <meta-data
