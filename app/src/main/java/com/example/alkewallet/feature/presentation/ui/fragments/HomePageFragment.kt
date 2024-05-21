@@ -15,13 +15,16 @@ import com.example.alkewallet.databinding.FragmentHomePageBinding
 import com.example.alkewallet.feature.data.model.Transferencia
 import com.example.alkewallet.feature.presentation.adapter.TransactionAdapter
 import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
+import com.example.alkewallet.feature.presentation.viewmodel.TransactionViewModel
 
 
 class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding
-
     private val alkeViewModel: AlkeViewModel by activityViewModels()
+    private val transactionViewModel: TransactionViewModel by activityViewModels()
+    private lateinit var transactionAdapter: TransactionAdapter
+
 
 
     override fun onCreateView(
@@ -52,6 +55,10 @@ class HomePageFragment : Fragment() {
             val transactionAdapter = TransactionAdapter(user)
             binding.recyclerTransferencias.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerTransferencias.adapter = transactionAdapter
+
+            transactionViewModel.transaction.observe(viewLifecycleOwner) { transaction ->
+                transactionAdapter.updateTransactions(transaction)
+            }
         }
 
     }

@@ -41,6 +41,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+    <Spinner
+        android:id="@+id/spinnerSendMoney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:listitem="@layout/contact_item"/>
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -49,73 +55,24 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
-
-        <!-- Agrega aquí tus vistas dentro del LinearLayout -->
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-
-            app:cardCornerRadius="200dp"
-            app:cardElevation="0dp">
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/pp_empty"
-                tools:contentDescription="TODO" />
-        </androidx.cardview.widget.CardView>
-
-        <LinearLayout
-            android:id="@+id/contact"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="5dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/jua"
-                android:text="Yara Khalil"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/jua"
-                android:text="Yara__khalil@gmail.com"
-                android:textColor="@color/grey"
-                android:textSize="12dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/view"/>
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
         android:fontFamily="@font/jua"
         android:text="Cantidad a transferir"
         android:textColor="@color/black"
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/txtIngreso"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txtIngreso"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSendMoney" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtIngreso"
+        android:id="@+id/txtAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -146,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
-        app:layout_constraintTop_toBottomOf="@+id/txtIngreso" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAmount" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout7"
@@ -180,7 +137,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_sendMoney"
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:layout_marginHorizontal="15sp"
@@ -201,10 +158,10 @@
         android:layout_height="12dp"
         android:layout_marginEnd="160dp"
         android:src="@drawable/send_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_sendMoney"
+        app:layout_constraintEnd_toEndOf="@+id/btn_sendMoney"
+        app:layout_constraintStart_toStartOf="@+id/btn_sendMoney"
+        app:layout_constraintTop_toTopOf="@+id/btn_sendMoney"
         app:tint="@color/black" />
 
 

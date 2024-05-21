@@ -7,7 +7,7 @@ import com.example.alkewallet.feature.data.model.Wallet
 class AlkeDataSet {
     val users: MutableList<User> = createUserDataSet()
 
-    private fun createUserDataSet(): MutableList<User> {
+     private fun createUserDataSet(): MutableList<User> {
         // Mantén este método privado
         return mutableListOf(
             User(100, "Javier", "Alcantara", "18298640-2", "123", "12345", Wallet(100, 100000.00)),
@@ -17,6 +17,11 @@ class AlkeDataSet {
             User(104, "Luis", "Pérez", "17893456-6", "luis.perez@example.com", "securepass", Wallet(104, 120000.00)),
             User(105, "Sofía", "López", "19584736-9", "sofia.lopez@example.com", "12345678", Wallet(105, 60000.00))
         )
+    }
+
+    fun getAllUsers(): List<User> {
+        return users
+
     }
 
     fun loginUser(email: String, password: String): User? {

@@ -8,7 +8,7 @@ import com.example.alkewallet.feature.data.model.User
 import com.example.alkewallet.feature.data.model.Wallet
 import com.example.alkewallet.feature.domain.AlkeUseCase
 
-class AlkeViewModel: ViewModel() {
+class AlkeViewModel : ViewModel() {
     private val _usuarios = MutableLiveData<MutableList<User>>()
     val users: LiveData<MutableList<User>> get() = _usuarios
 
@@ -38,6 +38,25 @@ class AlkeViewModel: ViewModel() {
 
     fun authUser(email: String, password: String): User? {
         return _usuarios.value?.find { it.userEmail == email && it.userPassword == password }
+    }
+
+    fun updateBalanceUser(monto: Double): Boolean {
+        _userLogIn.value?.let { user ->
+            val nuevoSaldo = user.wallet.balance - monto
+            return if (nuevoSaldo >= 0) {
+                val nuevaWallet = user.wallet.copy(balance = nuevoSaldo)
+                val usuarioActualizado = user.copy(wallet = nuevaWallet)
+                _userLogIn.value = usuarioActualizado
+                _usuarios.value = _usuarios.value?.map {
+                    if (it.userId == user.userId) usuarioActualizado else it
+                }?.toMutableList()
+
+                true
+            } else {
+                false
+            }
+        }
+        return false
     }
 
 

@@ -5,14 +5,14 @@ import com.example.alkewallet.feature.data.model.Transaction
 
 class TransactionUseCase {
 
-    val transactionDataSet = TransactionDataSet()
+    private val transactionDataSet = TransactionDataSet()
 
     fun getAllTransaction(): MutableList<Transaction> {
         return transactionDataSet.getAllTransaction()
     }
 
-    fun createNewTransaction(transaction: Transaction) {
-        return transactionDataSet.createNewTransaction(transaction)
+    fun addTransaction(transaction: Transaction) {
+        transactionDataSet.addTransaction(transaction)
     }
 
 }

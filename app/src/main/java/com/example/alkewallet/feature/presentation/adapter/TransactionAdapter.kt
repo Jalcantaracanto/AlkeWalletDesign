@@ -42,6 +42,12 @@ class TransactionAdapter(private val user: User) :
         return transactions.size
     }
 
+    fun updateTransactions(newTransactions: List<Transaction>) {
+        transactions =
+            newTransactions.filter { it.idReceiver == user.userId || it.idSender == user.userId }
+        notifyDataSetChanged()
+    }
+
     inner class TransactionViewHolder(private var bindingItem: TransferenciaItemBinding) :
         RecyclerView.ViewHolder(bindingItem.root) {
 
@@ -65,4 +71,6 @@ class TransactionAdapter(private val user: User) :
             }
         }
     }
+
+
 }
