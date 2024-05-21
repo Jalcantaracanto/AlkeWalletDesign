@@ -22,6 +22,10 @@ class AlkeViewModel: ViewModel() {
         )
     }
 
+    fun getUser(id: Long): User? {
+        return _usuarios.value?.find { it.userId == id }
+    }
+
     fun setUserLogIn(user: User) {
         _userLogIn.value = user
     }
