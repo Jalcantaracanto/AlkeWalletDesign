@@ -13,6 +13,7 @@ import com.example.alkewallet.R
 import com.example.alkewallet.feature.presentation.adapter.TransferenciaAdapter
 import com.example.alkewallet.databinding.FragmentHomePageBinding
 import com.example.alkewallet.feature.data.model.Transferencia
+import com.example.alkewallet.feature.presentation.adapter.TransactionAdapter
 import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
 
 
@@ -29,9 +30,6 @@ class HomePageFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomePageBinding.inflate(inflater, container, false)
-
-        initAdapter()
-
 
         return binding.root
     }
@@ -57,31 +55,4 @@ class HomePageFragment : Fragment() {
         }
 
     }
-    }
-
-    fun initAdapter() {
-
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerTransferencias.layoutManager = linearLayoutManager
-
-        val transferenciaAdapter = TransferenciaAdapter()
-        transferenciaAdapter.transferencias = Transferencia.dataTransferencias
-        binding.recyclerTransferencias.adapter = transferenciaAdapter
-
-
-
-
-
-        btn_request.setOnClickListener { navController.navigate(R.id.requestMoneyFragment) }
-        btn_send.setOnClickListener {
-        }
-
-
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-
 }
