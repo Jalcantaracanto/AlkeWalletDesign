@@ -7,18 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.alkewallet.R
 import com.example.alkewallet.databinding.FragmentLoginPageBinding
+<<<<<<< Updated upstream
 import com.example.alkewallet.feature.data.model.User
+=======
+>>>>>>> Stashed changes
 import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
 
 class LoginPageFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginPageBinding
+<<<<<<< Updated upstream
     private lateinit var viewModelAlke: AlkeViewModel
+=======
+    private val alkeViewModel: AlkeViewModel by activityViewModels()
+
+>>>>>>> Stashed changes
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -36,6 +44,7 @@ class LoginPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+<<<<<<< Updated upstream
 
         val navController = findNavController(view)
 
@@ -73,4 +82,25 @@ class LoginPageFragment : Fragment() {
             }
         })
     }
+=======
+
+        val navController = findNavController(view)
+        binding.btnLogin.setOnClickListener{emailCheck()}
+    }
+
+    fun emailCheck(){
+
+        val txtEmail = binding.textInputEmail.editText?.text.toString()
+        val txtPassword = binding.textInputPassword.editText?.text.toString()
+
+        val user = alkeViewModel.authUser(txtEmail, txtPassword)
+
+        if (user != null) {
+            alkeViewModel.setUserLogIn(user)
+            findNavController().navigate(R.id.homePageFragment)
+        } else {
+            Toast.makeText(requireContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+        }
+    }
+>>>>>>> Stashed changes
 }
