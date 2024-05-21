@@ -12,21 +12,19 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.alkewallet.R
 import com.example.alkewallet.databinding.FragmentLoginPageBinding
-<<<<<<< Updated upstream
 import com.example.alkewallet.feature.data.model.User
-=======
->>>>>>> Stashed changes
+
 import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
 
 class LoginPageFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginPageBinding
-<<<<<<< Updated upstream
+
     private lateinit var viewModelAlke: AlkeViewModel
-=======
+
     private val alkeViewModel: AlkeViewModel by activityViewModels()
 
->>>>>>> Stashed changes
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -44,51 +42,14 @@ class LoginPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-<<<<<<< Updated upstream
 
         val navController = findNavController(view)
 
-        setUpViewModel()
 
-        binding.btnLogin.setOnClickListener {
-            val email = binding.textInputEmail.editText?.text.toString()
-            val password = binding.textInputPassword.editText?.text.toString()
-
-            viewModelAlke.getLoginUser(email, password)
-        }
+        binding.btnLogin.setOnClickListener { emailCheck() }
     }
 
-    private fun setUpViewModel() {
-
-        viewModelAlke = ViewModelProvider(this)[AlkeViewModel::class.java]
-
-        val alkeObserver = Observer<MutableList<User>> {
-        }
-        viewModelAlke.getLiveDataObserver().observe(viewLifecycleOwner, alkeObserver)
-
-        viewModelAlke.isUserLoggedIn.observe(viewLifecycleOwner, Observer { isLoggedIn ->
-            if (isLoggedIn) {
-                Log.i("TESTLOGIN", "Usuario Existe")
-                Toast.makeText(requireContext(), "Credenciales Correctas", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                Log.i("TESTLOGIN", "Usuario No Existe")
-                Toast.makeText(
-                    requireContext(),
-                    "Usuario y/o contraseña incorrectas",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
-        })
-    }
-=======
-
-        val navController = findNavController(view)
-        binding.btnLogin.setOnClickListener{emailCheck()}
-    }
-
-    fun emailCheck(){
+    fun emailCheck() {
 
         val txtEmail = binding.textInputEmail.editText?.text.toString()
         val txtPassword = binding.textInputPassword.editText?.text.toString()
@@ -99,8 +60,9 @@ class LoginPageFragment : Fragment() {
             alkeViewModel.setUserLogIn(user)
             findNavController().navigate(R.id.homePageFragment)
         } else {
-            Toast.makeText(requireContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT)
+                .show()
         }
     }
->>>>>>> Stashed changes
+
 }

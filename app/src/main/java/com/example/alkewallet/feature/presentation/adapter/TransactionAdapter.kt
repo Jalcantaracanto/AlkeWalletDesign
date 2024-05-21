@@ -52,7 +52,7 @@ class TransactionAdapter(private val user: User) :
             } else {
                 userID = transaction.idSender
             }
-            val userName = AlkeUseCase.get
+            val userName = AlkeUseCase.getUser(userID)
             bindingItem.txtnombrereceptor.text = userName.userName
             bindingItem.txtfecha.text = transaction.date
 
