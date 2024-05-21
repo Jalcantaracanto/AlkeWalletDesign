@@ -43,7 +43,7 @@
         android:text="@string/text_inicio"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintBottom_toTopOf="@+id/txt_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -54,14 +54,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:contentDescription="@string/campaign_notification"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/txt_name"
         app:srcCompat="@drawable/notifications__icon" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/txt_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -84,11 +84,11 @@
         android:text="@string/total_balance"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
-        app:layout_constraintStart_toStartOf="@+id/textView13" />
+        app:layout_constraintBottom_toTopOf="@+id/txt_balance"
+        app:layout_constraintStart_toStartOf="@+id/txt_balance" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
