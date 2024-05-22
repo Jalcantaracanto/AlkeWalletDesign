@@ -6,5 +6,6 @@ data class Transaction(
     val balance: Double,
     val date: String,
     val idSender: Long,
-    val idReceiver: Long
+    val idReceiver: Long,
+    val imgUser: String = "",
 )

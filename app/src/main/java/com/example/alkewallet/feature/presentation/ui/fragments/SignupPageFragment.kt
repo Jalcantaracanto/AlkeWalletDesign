@@ -1,60 +1,125 @@
 package com.example.alkewallet.feature.presentation.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.alkewallet.R
+import com.example.alkewallet.databinding.FragmentSendMoneyBinding
+import com.example.alkewallet.databinding.FragmentSignupPageBinding
+import com.example.alkewallet.feature.data.model.User
+import com.example.alkewallet.feature.data.model.Wallet
+import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SignupPageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignupPageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var binding: FragmentSignupPageBinding
+    private val alkeViewModel: AlkeViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signup_page, container, false)
+        binding = FragmentSignupPageBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignupPageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignupPageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val lastUserId = alkeViewModel.getLastUserId()
+        if (lastUserId != 0L) {
+            Toast.makeText(
+                context,
+                "Último ID de usuario registrado: $lastUserId",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        val navController = Navigation.findNavController(view)
+        binding.txtHaveAccount.setOnClickListener { navController.navigate(R.id.loginPageFragment) }
+        binding.btnCreateAccount.setOnClickListener { registerAccount() }
     }
+
+    fun registerAccount() {
+        val name = binding.txtName.editText?.text.toString()
+        val lastname = binding.txtLastname.editText?.text.toString()
+        val email = binding.txtEmail.editText?.text.toString()
+        val password = binding.txtPassword.editText?.text.toString()
+        val confirmPassword = binding.txtPasswordCheck.editText?.text.toString()
+
+        var isValid = true
+
+        if (name.isEmpty()) {
+            binding.txtName.editText?.error = "Ingrese su nombre"
+            isValid = false
+        } else {
+            binding.txtName.editText?.error = null
+        }
+
+        if (lastname.isEmpty()) {
+            binding.txtLastname.editText?.error = "Ingrese su apellido"
+            isValid = false
+        } else {
+            binding.txtLastname.editText?.error = null
+        }
+
+        if (email.isEmpty()) {
+            binding.txtEmail.editText?.error = "Ingrese su email"
+            isValid = false
+        } else {
+            binding.txtEmail.editText?.error = null
+        }
+
+        if (password.isEmpty()) {
+            binding.txtPassword.editText?.error = "Ingrese su contraseña"
+            isValid = false
+        } else {
+            binding.txtPassword.editText?.error = null
+        }
+
+        if (confirmPassword.isEmpty()) {
+            binding.txtPasswordCheck.editText?.error = "Confirme su contraseña"
+            isValid = false
+        } else {
+            binding.txtPasswordCheck.editText?.error = null
+        }
+
+        if (password != confirmPassword) {
+            binding.txtPasswordCheck.editText?.error = "Las contraseñas no coinciden"
+            isValid = false
+        } else if (confirmPassword.isNotEmpty()) {
+            binding.txtPasswordCheck.editText?.error = null
+        }
+
+        if (isValid) {
+            val newUserId = (alkeViewModel.users.value?.maxOfOrNull { it.userId } ?: 0) + 1
+            val newWalletId = alkeViewModel.getLastWalletId() + 1
+
+            Log.e("VERID, ", "$newUserId")
+
+            val newWallet = Wallet(newWalletId, 1000.00)
+            val newUser = User(newUserId, name, lastname, email, password, newWallet)
+
+            alkeViewModel.addUser(newUser)
+
+            Toast.makeText(requireContext(), "Registro exitoso", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.loginPageFragment)
+        }
+
+
+    }
+
 }

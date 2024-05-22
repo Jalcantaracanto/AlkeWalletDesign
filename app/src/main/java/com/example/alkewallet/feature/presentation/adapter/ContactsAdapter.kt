@@ -27,13 +27,26 @@ class ContactsAdapter(context: Context, private val items: List<User>) :
 
         val nameTextView = view.findViewById<TextView>(R.id.txt_name_contact)
         val emailTextView = view.findViewById<TextView>(R.id.txt_email_contact)
+        val imgProfile = view.findViewById<ImageView>(R.id.img_profile_contact)
 
         item?.let {
 
             nameTextView.text = it.userName + " " + it.userLastName
             emailTextView.text = it.userEmail
+            imgProfile.setImageResource(getImageResource(it.imgUser))
         }
-
         return view
+    }
+
+    private fun getImageResource(imageName: String): Int {
+        return when (imageName) {
+            "pp1" -> R.drawable.pp1
+            "pp2" -> R.drawable.pp2
+            "pp3" -> R.drawable.pp3
+            "pp4" -> R.drawable.pp4
+            "pp5" -> R.drawable.pp5
+
+            else -> R.drawable.pp_empty
+        }
     }
 }

@@ -23,8 +23,6 @@ class HomePageFragment : Fragment() {
     private lateinit var binding: FragmentHomePageBinding
     private val alkeViewModel: AlkeViewModel by activityViewModels()
     private val transactionViewModel: TransactionViewModel by activityViewModels()
-    private lateinit var transactionAdapter: TransactionAdapter
-
 
 
     override fun onCreateView(
@@ -46,20 +44,33 @@ class HomePageFragment : Fragment() {
         val btn_send = view.findViewById<Button>(R.id.btn_sendMoney)
 
         btn_request.setOnClickListener { v: View? -> navController.navigate(R.id.requestMoneyFragment) }
-        btn_send.setOnClickListener { v: View? -> navController.navigate(R.id.sendMoneyFragment) }
+        btn_send.setOnClickListener { navController.navigate(R.id.sendMoneyFragment) }
 
 
         alkeViewModel.userLogIn.observe(viewLifecycleOwner) { user ->
+            binding.imgUserProfile.setImageResource(getImageResource(user.imgUser))
             binding.txtName.text = "Hola ${user.userName}!"
             binding.txtBalance.text = String.format("$%.2f", user.wallet.balance)
             val transactionAdapter = TransactionAdapter(user)
             binding.recyclerTransferencias.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerTransferencias.adapter = transactionAdapter
 
-            transactionViewModel.transaction.observe(viewLifecycleOwner) { transaction ->
+            transactionViewModel.transactions.observe(viewLifecycleOwner) { transaction ->
                 transactionAdapter.updateTransactions(transaction)
             }
         }
 
+    }
+
+    private fun getImageResource(imageName: String): Int {
+        return when (imageName) {
+            "pp1" -> R.drawable.pp1
+            "pp2" -> R.drawable.pp2
+            "pp3" -> R.drawable.pp3
+            "pp4" -> R.drawable.pp4
+            "pp5" -> R.drawable.pp5
+
+            else -> R.drawable.pp_empty
+        }
     }
 }

@@ -28,7 +28,6 @@ class LoginSignupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val navController = findNavController(view)
-
         val txtAccount = view.findViewById<TextView>(R.id.textIHaveAccount)
 
         txtAccount.setOnClickListener { v: View? ->

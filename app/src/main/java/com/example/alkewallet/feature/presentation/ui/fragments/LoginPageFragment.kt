@@ -47,6 +47,7 @@ class LoginPageFragment : Fragment() {
 
 
         binding.btnLogin.setOnClickListener { emailCheck() }
+        binding.txtRegister.setOnClickListener{ navController.navigate(R.id.signupPageFragment) }
     }
 
     fun emailCheck() {

@@ -23,7 +23,7 @@
         app:srcCompat="@drawable/background_detail" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/img_user_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"

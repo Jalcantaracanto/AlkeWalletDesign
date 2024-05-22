@@ -33,8 +33,6 @@ class SendMoneyFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(
@@ -51,6 +49,7 @@ class SendMoneyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var userReceiverId = 0L
+        var imgUser = ""
         val spinner = binding.spinnerSendMoney
         val currentUser = alkeViewModel.userLogIn.value
 
@@ -63,6 +62,7 @@ class SendMoneyFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedUser = parent?.getItemAtPosition(position) as User
                 userReceiverId = selectedUser.userId
+                imgUser = selectedUser.imgUser
                 Log.d("USER_SELECTED", "User ID: $userReceiverId")
             }
 
@@ -72,9 +72,8 @@ class SendMoneyFragment : Fragment() {
         }
 
         binding.btnSendMoney.setOnClickListener {
-            Log.d("BUSCANDOID", userReceiverId.toString())
             val amount = binding.txtAmount.editText?.text.toString().toDouble()
-            val amountSuficient = alkeViewModel.updateBalanceUser(amount)
+            val amountSuficient = alkeViewModel.updateBalanceUser(amount, true)
 
             if (!amountSuficient) {
                 Toast.makeText(
@@ -88,22 +87,16 @@ class SendMoneyFragment : Fragment() {
             val currentDate = Date()
             val dateFormat = SimpleDateFormat("MMM dd, hh:mm a", Locale.getDefault())
             val formattedDate = dateFormat.format(currentDate)
-
             val lastTransactionId = transactionViewModel.getLastTransactionId()
 
-            val nuevaTransaccion =
-                currentUser?.let { it1 -> Transaction(lastTransactionId + 1, amount, formattedDate, it1.userId, userReceiverId) }
+            val newTransaction =
+                currentUser?.let { it1 -> Transaction(lastTransactionId + 1, amount, formattedDate, it1.userId, userReceiverId, imgUser) }
 
-            if (nuevaTransaccion != null) {
-                transactionViewModel.addTransaccion(nuevaTransaccion)
+            if (newTransaction != null) {
+                transactionViewModel.addTransaction(newTransaction)
             }
 
-            Log.d("BUSCANDOID", nuevaTransaccion.toString())
-
-
             findNavController().navigate(R.id.homePageFragment)
-
         }
     }
-
 }

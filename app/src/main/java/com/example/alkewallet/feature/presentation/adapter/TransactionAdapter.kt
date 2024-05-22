@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.alkewallet.R
 import com.example.alkewallet.databinding.TransferenciaItemBinding
 import com.example.alkewallet.feature.data.model.Transaction
 import com.example.alkewallet.feature.data.model.Transferencia
@@ -59,7 +60,9 @@ class TransactionAdapter(private val user: User) :
                 userID = transaction.idSender
             }
             val userName = AlkeUseCase.getUser(userID)
-            bindingItem.txtnombrereceptor.text = userName.userName
+            if (userName != null) {
+                bindingItem.txtnombrereceptor.text = userName.userName + " " + userName.userLastName
+            }
             bindingItem.txtfecha.text = transaction.date
 
             if (transaction.idReceiver == user.userId) {
@@ -68,6 +71,19 @@ class TransactionAdapter(private val user: User) :
             } else {
                 bindingItem.senderarrow.visibility = View.VISIBLE
                 bindingItem.txtcantidad.text = "-$" + String.format("%.2f", transaction.balance)
+            }
+            bindingItem.imageprofile.setImageResource(getImageResource(transaction.imgUser))
+        }
+
+        private fun getImageResource(imageName: String): Int {
+            return when (imageName) {
+                "pp1" -> R.drawable.pp1
+                "pp2" -> R.drawable.pp2
+                "pp3" -> R.drawable.pp3
+                "pp4" -> R.drawable.pp4
+                "pp5" -> R.drawable.pp5
+
+                else -> R.drawable.pp_empty
             }
         }
     }

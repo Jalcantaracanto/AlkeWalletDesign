@@ -14,9 +14,9 @@ class TransactionDataSet {
 
     private fun createInitialDataSet(): MutableList<Transaction> {
         return mutableListOf(
-            Transaction(1, 500.00, "Oct 14, 10:24 AM", 100, 101),
-            Transaction(2, 1500.00, "Oct 16, 11:00 AM", 100, 102),
-            Transaction(3, 2500.00, "Oct 17, 12:00 PM", 101, 100)
+            Transaction(1, 15.00, "Oct 14, 10:24 AM", 100, 101,imgUser = "pp1"),
+            Transaction(2, 21.30, "Oct 16, 11:00 AM", 100, 102,imgUser = "pp3"),
+            Transaction(3, 12.40, "Oct 17, 12:00 PM", 101, 100,imgUser = "pp1")
         )
     }
 

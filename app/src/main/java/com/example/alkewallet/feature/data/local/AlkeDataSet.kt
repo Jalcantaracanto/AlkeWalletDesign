@@ -10,18 +10,16 @@ class AlkeDataSet {
      private fun createUserDataSet(): MutableList<User> {
         // Mantén este método privado
         return mutableListOf(
-            User(100, "Javier", "Alcantara", "18298640-2", "123", "12345", Wallet(100, 100000.00)),
-            User(101, "María", "Gutiérrez", "20485739-5", "maria.gutierrez@example.com", "abcde", Wallet(101, 75000.00)),
-            User(102, "Carlos", "Hernández", "18652470-3", "carlos.hernandez@example.com", "qwerty", Wallet(102, 50000.00)),
-            User(103, "Ana", "Martínez", "19983465-1", "ana.martinez@example.com", "password", Wallet(103, 90000.00)),
-            User(104, "Luis", "Pérez", "17893456-6", "luis.perez@example.com", "securepass", Wallet(104, 120000.00)),
-            User(105, "Sofía", "López", "19584736-9", "sofia.lopez@example.com", "12345678", Wallet(105, 60000.00))
+            User(100, "Yara", "Khalil",  "123", "12345", Wallet(100, 500.00), "pp2"),
+            User(101, "Sara", "Ibrahim",  "sara.ibrahim@example.com", "sara", Wallet(101, 250.00), "pp1"),
+            User(102, "Ahmad", "Ibrahim",  "ahmad.ibrahim@example.com", "ahmad", Wallet(102, 710.00), "pp3"),
+            User(103, "Reem", "Khaled", "reem.khaled@example.com", "reem", Wallet(103, 423.00), "pp4"),
+            User(104, "Hiba", "Saleh",  "hiba.saleh@example.com", "hiba", Wallet(104, 100.00), "pp5"),
         )
     }
 
     fun getAllUsers(): List<User> {
         return users
-
     }
 
     fun loginUser(email: String, password: String): User? {

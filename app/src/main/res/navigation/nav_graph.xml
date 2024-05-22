@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_loginPageFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
+        <action
+            android:id="@+id/action_loginPageFragment_to_signupPageFragment"
+            app:destination="@id/signupPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/homePageFragment"
@@ -51,5 +54,13 @@
         <action
             android:id="@+id/action_sendMoneyFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupPageFragment"
+        android:name="com.example.alkewallet.feature.presentation.ui.fragments.SignupPageFragment"
+        android:label="SignupPageFragment" >
+        <action
+            android:id="@+id/action_signupPageFragment_to_loginPageFragment"
+            app:destination="@id/loginPageFragment" />
     </fragment>
 </navigation>
