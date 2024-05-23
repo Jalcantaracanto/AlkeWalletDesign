@@ -16,6 +16,7 @@ import com.example.alkewallet.R
 import com.example.alkewallet.feature.presentation.adapter.TransferenciaAdapter
 import com.example.alkewallet.databinding.FragmentHomePageBinding
 import com.example.alkewallet.feature.data.model.Transferencia
+import com.example.alkewallet.feature.domain.TransactionUseCase
 import com.example.alkewallet.feature.presentation.adapter.TransactionAdapter
 import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
 import com.example.alkewallet.feature.presentation.viewmodel.TransactionViewModel
@@ -54,6 +55,8 @@ class HomePageFragment : Fragment() {
         binding.btnRequestMoney.setOnClickListener { navController.navigate(R.id.requestMoneyFragment) }
         binding.btnSendMoney.setOnClickListener { navController.navigate(R.id.sendMoneyFragment) }
         binding.imgUserProfile.setOnClickListener { navController.navigate(R.id.profilePageFragment) }
+
+
 
         alkeViewModel.userLogIn.observe(viewLifecycleOwner) { user ->
             binding.imgUserProfile.setImageResource(getImageResource(user.imgUser))

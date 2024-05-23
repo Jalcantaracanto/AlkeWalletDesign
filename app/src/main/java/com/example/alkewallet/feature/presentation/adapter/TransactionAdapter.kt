@@ -16,11 +16,12 @@ class TransactionAdapter(private val user: User) :
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
     //Atribute
+    private var AlkeUseCase = AlkeUseCase()
 
     var transactions = TransactionUseCase().getAllTransaction()
         .filter { it.idReceiver == user.userId || it.idSender == user.userId }
 
-    private var AlkeUseCase = AlkeUseCase()
+
 
 
     override fun onCreateViewHolder(

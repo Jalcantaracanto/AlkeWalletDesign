@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.alkewallet.R
@@ -15,14 +16,14 @@ import com.example.alkewallet.databinding.FragmentLoginPageBinding
 import com.example.alkewallet.feature.data.model.User
 
 import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
+import com.example.alkewallet.feature.presentation.viewmodel.TransactionViewModel
 
 class LoginPageFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginPageBinding
 
-    private lateinit var viewModelAlke: AlkeViewModel
-
     private val alkeViewModel: AlkeViewModel by activityViewModels()
+    private val transactionViewModel: TransactionViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +48,7 @@ class LoginPageFragment : Fragment() {
 
 
         binding.btnLogin.setOnClickListener { emailCheck() }
-        binding.txtRegister.setOnClickListener{ navController.navigate(R.id.signupPageFragment) }
+        binding.txtRegister.setOnClickListener { navController.navigate(R.id.signupPageFragment) }
     }
 
     fun emailCheck() {
@@ -59,6 +60,7 @@ class LoginPageFragment : Fragment() {
 
         if (user != null) {
             alkeViewModel.setUserLogIn(user)
+            transactionViewModel.getLastTransactionId()
             findNavController().navigate(R.id.homePageFragment)
         } else {
             Toast.makeText(requireContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT)
