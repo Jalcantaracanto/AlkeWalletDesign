@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alkewallet.R
 import com.example.alkewallet.feature.presentation.adapter.TransferenciaAdapter
@@ -40,27 +43,41 @@ class HomePageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController(view)
 
-        val btn_request = view.findViewById<Button>(R.id.btn_requestMoney)
-        val btn_send = view.findViewById<Button>(R.id.btn_sendMoney)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.loginPageFragment)
+            }
+        })
 
-        btn_request.setOnClickListener { v: View? -> navController.navigate(R.id.requestMoneyFragment) }
-        btn_send.setOnClickListener { navController.navigate(R.id.sendMoneyFragment) }
-
+        binding.btnRequestMoney.setOnClickListener { navController.navigate(R.id.requestMoneyFragment) }
+        binding.btnSendMoney.setOnClickListener { navController.navigate(R.id.sendMoneyFragment) }
 
         alkeViewModel.userLogIn.observe(viewLifecycleOwner) { user ->
             binding.imgUserProfile.setImageResource(getImageResource(user.imgUser))
             binding.txtName.text = "Hola ${user.userName}!"
             binding.txtBalance.text = String.format("$%.2f", user.wallet.balance)
             val transactionAdapter = TransactionAdapter(user)
+
             binding.recyclerTransferencias.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerTransferencias.adapter = transactionAdapter
-
             transactionViewModel.transactions.observe(viewLifecycleOwner) { transaction ->
                 transactionAdapter.updateTransactions(transaction)
             }
+
+            if (transactionAdapter.transactions.isEmpty()){
+                binding.recyclerTransferencias.visibility = View.GONE
+                binding.imgEmptyTransaction.visibility = View.VISIBLE
+                binding.txtEmptyTransaction.visibility = View.VISIBLE
+            }else{
+                binding.recyclerTransferencias.visibility = View.VISIBLE
+                binding.imgEmptyTransaction.visibility = View.GONE
+                binding.txtEmptyTransaction.visibility = View.GONE
+            }
         }
 
+
     }
+
 
     private fun getImageResource(imageName: String): Int {
         return when (imageName) {

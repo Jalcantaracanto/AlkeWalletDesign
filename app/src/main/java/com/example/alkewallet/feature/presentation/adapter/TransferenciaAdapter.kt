@@ -70,7 +70,7 @@ class TransferenciaAdapter : RecyclerView.Adapter<TransferenciaAdapter.Transfere
                 "pp4" -> R.drawable.pp4
                 "pp5" -> R.drawable.pp5
 
-                else -> R.drawable.pp1
+                else -> R.drawable.pp_empty
             }
         }
 

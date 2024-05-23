@@ -39,15 +39,6 @@ class SignupPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val lastUserId = alkeViewModel.getLastUserId()
-        if (lastUserId != 0L) {
-            Toast.makeText(
-                context,
-                "Último ID de usuario registrado: $lastUserId",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
         val navController = Navigation.findNavController(view)
         binding.txtHaveAccount.setOnClickListener { navController.navigate(R.id.loginPageFragment) }
         binding.btnCreateAccount.setOnClickListener { registerAccount() }
@@ -118,8 +109,5 @@ class SignupPageFragment : Fragment() {
             Toast.makeText(requireContext(), "Registro exitoso", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.loginPageFragment)
         }
-
-
     }
-
 }

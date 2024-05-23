@@ -17,7 +17,7 @@ class TransactionAdapter(private val user: User) :
 
     //Atribute
 
-    private var transactions = TransactionUseCase().getAllTransaction()
+    var transactions = TransactionUseCase().getAllTransaction()
         .filter { it.idReceiver == user.userId || it.idSender == user.userId }
 
     private var AlkeUseCase = AlkeUseCase()
