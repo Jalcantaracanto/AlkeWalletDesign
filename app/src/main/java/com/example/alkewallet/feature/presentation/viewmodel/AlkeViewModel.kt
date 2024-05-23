@@ -40,16 +40,22 @@ class AlkeViewModel : ViewModel() {
         return alkeUseCase.authUser(email, password)
     }
 
-    fun updateBalanceUser(monto: Double, isSend: Boolean): Boolean {
+    fun updateBalanceUser(amount: Double, isSend: Boolean): Boolean {
         _userLogIn.value?.let { user ->
-            if (alkeUseCase.updateBalanceUser(user, monto, isSend)) {
-                _userLogIn.value = alkeUseCase.getUser(user.userId)
-                _usuarios.value = alkeUseCase.getAllUsers()
+            val newBalance = if (isSend) {
+                user.wallet.balance - amount
+            } else {
+                user.wallet.balance + amount
+            }
+            if (newBalance >= 0) {
+                val newUser = user.copy(wallet = user.wallet.copy(balance = newBalance))
+                _userLogIn.value = newUser
                 return true
             }
         }
         return false
     }
+
 
     fun getLastUserId(): Long {
         return alkeUseCase.getLastUserId()

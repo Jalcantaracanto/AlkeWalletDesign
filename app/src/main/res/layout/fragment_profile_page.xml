@@ -102,7 +102,7 @@
         tools:fontFamily="@font/jua" />
 
     <ImageView
-        android:id="@+id/txt_image_profile"
+        android:id="@+id/image_profile"
         android:layout_width="100dp"
         android:layout_height="74dp"
         app:layout_constraintBottom_toBottomOf="@+id/my_image_view"

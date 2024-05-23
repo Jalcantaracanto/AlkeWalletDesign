@@ -47,6 +47,7 @@ class RequestMoneyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var userReceiverId = 0L
+        var imgUser = ""
         val spinner = binding.spinnerRequestMoney
         val currentUser = alkeViewModel.userLogIn.value
 
@@ -64,7 +65,7 @@ class RequestMoneyFragment : Fragment() {
             ) {
                 val selectedUser = parent?.getItemAtPosition(position) as User
                 userReceiverId = selectedUser.userId
-                Log.d("USER_SELECTED", "User ID: $userReceiverId")
+                imgUser = selectedUser.imgUser
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -97,7 +98,7 @@ class RequestMoneyFragment : Fragment() {
                         amount,
                         formattedDate,
                         userReceiverId,
-                        it1.userId
+                        it1.userId, imgUser
                     )
                 }
 

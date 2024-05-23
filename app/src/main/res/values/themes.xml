@@ -3,6 +3,7 @@
     <style name="Base.Theme.AlkeWallet" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
         <item name="colorPrimary">@color/skyblue</item>
         <item name="colorSecondary">@color/blueButton</item>
     </style>
@@ -17,4 +18,5 @@
     <style name="Theme.AlkeWallet.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.AlkeWallet.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

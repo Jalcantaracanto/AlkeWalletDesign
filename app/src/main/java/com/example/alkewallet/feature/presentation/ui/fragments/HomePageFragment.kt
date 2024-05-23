@@ -43,14 +43,17 @@ class HomePageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController(view)
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.loginPageFragment)
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().navigate(R.id.loginPageFragment)
+                }
+            })
 
         binding.btnRequestMoney.setOnClickListener { navController.navigate(R.id.requestMoneyFragment) }
         binding.btnSendMoney.setOnClickListener { navController.navigate(R.id.sendMoneyFragment) }
+        binding.imgUserProfile.setOnClickListener { navController.navigate(R.id.profilePageFragment) }
 
         alkeViewModel.userLogIn.observe(viewLifecycleOwner) { user ->
             binding.imgUserProfile.setImageResource(getImageResource(user.imgUser))
@@ -64,11 +67,11 @@ class HomePageFragment : Fragment() {
                 transactionAdapter.updateTransactions(transaction)
             }
 
-            if (transactionAdapter.transactions.isEmpty()){
+            if (transactionAdapter.transactions.isEmpty()) {
                 binding.recyclerTransferencias.visibility = View.GONE
                 binding.imgEmptyTransaction.visibility = View.VISIBLE
                 binding.txtEmptyTransaction.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.recyclerTransferencias.visibility = View.VISIBLE
                 binding.imgEmptyTransaction.visibility = View.GONE
                 binding.txtEmptyTransaction.visibility = View.GONE
@@ -77,7 +80,6 @@ class HomePageFragment : Fragment() {
 
 
     }
-
 
     private fun getImageResource(imageName: String): Int {
         return when (imageName) {
