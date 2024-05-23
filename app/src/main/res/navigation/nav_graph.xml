@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginPageFragment">
+    app:startDestination="@id/loginSignupFragment2">
     <fragment
         android:id="@+id/loginSignupFragment2"
         android:name="com.example.alkewallet.feature.presentation.ui.fragments.LoginSignupFragment"

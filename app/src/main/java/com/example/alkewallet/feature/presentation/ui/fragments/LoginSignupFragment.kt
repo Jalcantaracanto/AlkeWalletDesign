@@ -8,8 +8,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import com.example.alkewallet.R
+import com.example.alkewallet.databinding.FragmentLoginSignupBinding
 
 class LoginSignupFragment : Fragment() {
+
+    private lateinit var binding: FragmentLoginSignupBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -20,18 +23,16 @@ class LoginSignupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_signup, container, false)
+        binding = FragmentLoginSignupBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val navController = findNavController(view)
-        val txtAccount = view.findViewById<TextView>(R.id.textIHaveAccount)
 
-        txtAccount.setOnClickListener { v: View? ->
-            navController.navigate(R.id.loginPageFragment)
-        }
+        binding.textIHaveAccount.setOnClickListener { navController.navigate(R.id.loginPageFragment) }
+        binding.btnLogin.setOnClickListener { navController.navigate(R.id.loginPageFragment) }
     }
 }
