@@ -4,19 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alkewallet.R
-import com.example.alkewallet.feature.presentation.adapter.TransferenciaAdapter
 import com.example.alkewallet.databinding.FragmentHomePageBinding
-import com.example.alkewallet.feature.data.model.Transferencia
-import com.example.alkewallet.feature.domain.TransactionUseCase
 import com.example.alkewallet.feature.presentation.adapter.TransactionAdapter
 import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
 import com.example.alkewallet.feature.presentation.viewmodel.TransactionViewModel
@@ -62,7 +57,7 @@ class HomePageFragment : Fragment() {
             binding.imgUserProfile.setImageResource(getImageResource(user.imgUser))
             binding.txtName.text = "Hola ${user.userName}!"
             binding.txtBalance.text = String.format("$%.2f", user.wallet.balance)
-            val transactionAdapter = TransactionAdapter(user)
+            val transactionAdapter = TransactionAdapter(alkeViewModel)
 
             binding.recyclerTransferencias.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerTransferencias.adapter = transactionAdapter
@@ -83,7 +78,9 @@ class HomePageFragment : Fragment() {
 
 
     }
-
+    /**
+     * Funcion para asignar la imagen del perfil a travez de un String
+     */
     private fun getImageResource(imageName: String): Int {
         return when (imageName) {
             "pp1" -> R.drawable.pp1

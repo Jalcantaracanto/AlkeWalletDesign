@@ -5,12 +5,17 @@ import com.example.alkewallet.feature.data.model.User
 import com.example.alkewallet.feature.data.model.Wallet
 
 class AlkeDataSet {
+
     val users: MutableList<User> = createUserDataSet()
 
-     private fun createUserDataSet(): MutableList<User> {
+
+    /**
+     * Función para crear un conjunto de datos de usuarios
+     */
+    private fun createUserDataSet(): MutableList<User> {
         // Mantén este método privado
         return mutableListOf(
-            User(100, "Yara", "Khalil",  "123", "12345", Wallet(100, 500.00), "pp2"),
+            User(100, "Yara", "Khalil",  "Yara@example.com", "123", Wallet(100, 500.00), "pp2"),
             User(101, "Sara", "Ibrahim",  "sara.ibrahim@example.com", "sara", Wallet(101, 250.00), "pp1"),
             User(102, "Ahmad", "Ibrahim",  "ahmad.ibrahim@example.com", "ahmad", Wallet(102, 710.00), "pp3"),
             User(103, "Reem", "Khaled", "reem.khaled@example.com", "reem", Wallet(103, 423.00), "pp4"),
@@ -18,18 +23,35 @@ class AlkeDataSet {
         )
     }
 
+    /**
+     * Función para obtener todos los usuarios del conjunto de datos
+     */
     fun getAllUsers(): List<User> {
         return users
     }
 
+    /**
+     * Función para conectar el usuario con su contraseña (Autenticacion)
+     * @param email correo del usuario a conectar
+     * @param password Contraseña del usuario a conectar
+     */
     fun loginUser(email: String, password: String): User? {
         return users.find { it.userEmail == email && it.userPassword == password }
     }
 
+    /**
+     * Función para obtener un usuario por su ID
+     * @param userId ID del usuario a obtener
+     */
     fun getUser(userId: Long): User {
         return users.find { it.userId == userId } ?: throw IllegalArgumentException("User not found")
     }
 
+    /**
+     * Función para updatear un usuario en el conjunto de datos por su ID
+     * @param userId ID del usuario a actualizar
+     * @param updatedUser Nuevo usuario con los datos actualizados
+     */
     fun updateUser(userId: Long, updatedUser: User): User {
         val index = users.indexOfFirst { it.userId == userId }
         if (index != -1) {
@@ -38,6 +60,9 @@ class AlkeDataSet {
         return updatedUser
     }
 
+    /**
+     * Función para mostrar los usuarios
+     */
     override fun toString(): String {
         return users.joinToString(separator = "\n") { user ->
             "User(id=${user.userId}, email=${user.userEmail}, balance=${user.wallet.balance})"

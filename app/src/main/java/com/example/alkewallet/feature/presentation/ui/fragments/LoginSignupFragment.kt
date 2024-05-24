@@ -33,6 +33,6 @@ class LoginSignupFragment : Fragment() {
         val navController = findNavController(view)
 
         binding.textIHaveAccount.setOnClickListener { navController.navigate(R.id.loginPageFragment) }
-        binding.btnLogin.setOnClickListener { navController.navigate(R.id.loginPageFragment) }
+        binding.btnLogin.setOnClickListener { navController.navigate(R.id.signupPageFragment) }
     }
 }

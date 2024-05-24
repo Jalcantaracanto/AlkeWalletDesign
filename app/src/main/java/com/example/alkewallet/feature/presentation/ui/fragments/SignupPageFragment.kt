@@ -16,11 +16,13 @@ import com.example.alkewallet.databinding.FragmentSignupPageBinding
 import com.example.alkewallet.feature.data.model.User
 import com.example.alkewallet.feature.data.model.Wallet
 import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
+import com.example.alkewallet.feature.presentation.viewmodel.TransactionViewModel
 
 class SignupPageFragment : Fragment() {
 
     private lateinit var binding: FragmentSignupPageBinding
     private val alkeViewModel: AlkeViewModel by activityViewModels()
+    private val transactionViewModel: TransactionViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,9 @@ class SignupPageFragment : Fragment() {
         binding.btnCreateAccount.setOnClickListener { registerAccount() }
     }
 
+    /**
+     * Método para registrar un nuevo usuario en la aplicación.
+     */
     fun registerAccount() {
         val name = binding.txtName.editText?.text.toString()
         val lastname = binding.txtLastname.editText?.text.toString()
@@ -98,9 +103,6 @@ class SignupPageFragment : Fragment() {
         if (isValid) {
             val newUserId = (alkeViewModel.users.value?.maxOfOrNull { it.userId } ?: 0) + 1
             val newWalletId = alkeViewModel.getLastWalletId() + 1
-
-            Log.e("VERID, ", "$newUserId")
-
             val newWallet = Wallet(newWalletId, 1000.00)
             val newUser = User(newUserId, name, lastname, email, password, newWallet)
 
@@ -108,6 +110,8 @@ class SignupPageFragment : Fragment() {
 
             Toast.makeText(requireContext(), "Registro exitoso", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.loginPageFragment)
+            Log.d("TESTING", "USUARIOS: ${alkeViewModel.users.value}")
+            Log.d("TESTING", "USUARIOS: ${transactionViewModel.transactions.value}")
         }
     }
 }

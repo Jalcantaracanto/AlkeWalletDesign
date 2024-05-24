@@ -10,6 +10,9 @@ import android.widget.TextView
 import com.example.alkewallet.R
 import com.example.alkewallet.feature.data.model.User
 
+/**
+ * Este Adaptador se encarga de mostrar una lista de Usuarios en un Spinner
+ */
 class ContactsAdapter(context: Context, private val items: List<User>) :
     ArrayAdapter<User>(context, 0, items) {
 
@@ -38,6 +41,9 @@ class ContactsAdapter(context: Context, private val items: List<User>) :
         return view
     }
 
+    /**
+     * Funcion para asignar la imagen del perfil a travez de un String
+     */
     private fun getImageResource(imageName: String): Int {
         return when (imageName) {
             "pp1" -> R.drawable.pp1

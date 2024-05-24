@@ -40,7 +40,10 @@ class ProfilePageFragment : Fragment() {
         }
 
     }
-
+    
+    /**
+     * Funcion para asignar la imagen del perfil a travez de un String
+     */
     private fun getImageResource(imageName: String): Int {
         return when (imageName) {
             "pp1" -> R.drawable.pp1

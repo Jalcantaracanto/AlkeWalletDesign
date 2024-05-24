@@ -50,6 +50,7 @@ class RequestMoneyFragment : Fragment() {
         var imgUser = ""
         val spinner = binding.spinnerRequestMoney
         val currentUser = alkeViewModel.userLogIn.value
+        var userUpdate = User.EMPTY
 
         // SPINNER
         val items = AlkeDataSet().getAllUsers().filter { it.userId != currentUser?.userId }
@@ -66,6 +67,7 @@ class RequestMoneyFragment : Fragment() {
                 val selectedUser = parent?.getItemAtPosition(position) as User
                 userReceiverId = selectedUser.userId
                 imgUser = selectedUser.imgUser
+                userUpdate = selectedUser
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -75,7 +77,7 @@ class RequestMoneyFragment : Fragment() {
 
         binding.btnRequestMoney.setOnClickListener {
             val amount = binding.txtAmountRequest.editText?.text.toString().toDouble()
-            val amountSuficient = alkeViewModel.updateBalanceUser(amount, false)
+            val amountSuficient = alkeViewModel.updateBalanceUser(amount,userUpdate, false)
 
             if (!amountSuficient) {
                 Toast.makeText(
@@ -105,7 +107,8 @@ class RequestMoneyFragment : Fragment() {
             if (newTransaction != null) {
                 transactionViewModel.addTransaction(newTransaction)
             }
-
+            Log.d("TESTING", "USUARIOS: ${alkeViewModel.users.value}")
+            Log.d("TESTING", "USUARIOS: ${transactionViewModel.transactions.value}")
             findNavController().navigate(R.id.homePageFragment)
         }
 

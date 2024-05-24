@@ -52,6 +52,7 @@ class SendMoneyFragment : Fragment() {
         var imgUser = ""
         val spinner = binding.spinnerSendMoney
         val currentUser = alkeViewModel.userLogIn.value
+        var userUpdate = User.EMPTY
 
         // SPINNER
         val items = AlkeDataSet().getAllUsers().filter { it.userId != currentUser?.userId }
@@ -63,6 +64,7 @@ class SendMoneyFragment : Fragment() {
                 val selectedUser = parent?.getItemAtPosition(position) as User
                 userReceiverId = selectedUser.userId
                 imgUser = selectedUser.imgUser
+                userUpdate = selectedUser
                 Log.d("USER_SELECTED", "User ID: $userReceiverId")
             }
 
@@ -73,7 +75,7 @@ class SendMoneyFragment : Fragment() {
 
         binding.btnSendMoney.setOnClickListener {
             val amount = binding.txtAmount.editText?.text.toString().toDouble()
-            val amountSuficient = alkeViewModel.updateBalanceUser(amount, true)
+            val amountSuficient = alkeViewModel.updateBalanceUser(amount, userUpdate,true)
 
             if (!amountSuficient) {
                 Toast.makeText(

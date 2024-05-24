@@ -3,25 +3,27 @@ package com.example.alkewallet.feature.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.alkewallet.R
 import com.example.alkewallet.databinding.TransferenciaItemBinding
 import com.example.alkewallet.feature.data.model.Transaction
-import com.example.alkewallet.feature.data.model.Transferencia
 import com.example.alkewallet.feature.data.model.User
 import com.example.alkewallet.feature.domain.AlkeUseCase
 import com.example.alkewallet.feature.domain.TransactionUseCase
+import com.example.alkewallet.feature.presentation.viewmodel.AlkeViewModel
 
-class TransactionAdapter(private val user: User) :
+/**
+ * Adaptador que se encarga de pintar el RecyclerView al cual se le inyecta un usuario, con esto
+ * se realiza un filtro para obtener solo las transacciones pertenecientes al usuario conectado.
+ */
+class TransactionAdapter(private val alkeViewModel: AlkeViewModel) :
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
     //Atribute
-    private var AlkeUseCase = AlkeUseCase()
 
     var transactions = TransactionUseCase().getAllTransaction()
-        .filter { it.idReceiver == user.userId || it.idSender == user.userId }
-
-
+        .filter { it.idReceiver == alkeViewModel.userLogIn.value?.userId || it.idSender == alkeViewModel.userLogIn.value?.userId }
 
 
     override fun onCreateViewHolder(
@@ -46,7 +48,7 @@ class TransactionAdapter(private val user: User) :
 
     fun updateTransactions(newTransactions: List<Transaction>) {
         transactions =
-            newTransactions.filter { it.idReceiver == user.userId || it.idSender == user.userId }
+            newTransactions.filter { it.idReceiver == alkeViewModel.userLogIn.value?.userId || it.idSender == alkeViewModel.userLogIn.value?.userId }
         notifyDataSetChanged()
     }
 
@@ -54,28 +56,37 @@ class TransactionAdapter(private val user: User) :
         RecyclerView.ViewHolder(bindingItem.root) {
 
         fun bind(transaction: Transaction) {
+            val user = alkeViewModel.userLogIn.value
             var userID = 0L
-            if (transaction.idReceiver != user.userId) {
-                userID = transaction.idReceiver
-            } else {
-                userID = transaction.idSender
+            if (user != null) {
+                if (transaction.idReceiver != user.userId) {
+                    userID = transaction.idReceiver
+                } else {
+                    userID = transaction.idSender
+                }
             }
-            val userName = AlkeUseCase.getUser(userID)
+            alkeViewModel.getUser(userID)
+            val userName = alkeViewModel.userTransaction.value
             if (userName != null) {
                 bindingItem.txtnombrereceptor.text = userName.userName + " " + userName.userLastName
             }
             bindingItem.txtfecha.text = transaction.date
 
-            if (transaction.idReceiver == user.userId) {
-                bindingItem.receiverarrow.visibility = View.VISIBLE
-                bindingItem.txtcantidad.text = "+$" + String.format("%.2f", transaction.balance)
-            } else {
-                bindingItem.senderarrow.visibility = View.VISIBLE
-                bindingItem.txtcantidad.text = "-$" + String.format("%.2f", transaction.balance)
+            if (user != null) {
+                if (transaction.idReceiver == user.userId) {
+                    bindingItem.receiverarrow.visibility = View.VISIBLE
+                    bindingItem.txtcantidad.text = "+$" + String.format("%.2f", transaction.balance)
+                } else {
+                    bindingItem.senderarrow.visibility = View.VISIBLE
+                    bindingItem.txtcantidad.text = "-$" + String.format("%.2f", transaction.balance)
+                }
             }
             bindingItem.imageprofile.setImageResource(getImageResource(transaction.imgUser))
         }
 
+        /**
+         * Funcion para asignar la imagen del perfil a travez de un String
+         */
         private fun getImageResource(imageName: String): Int {
             return when (imageName) {
                 "pp1" -> R.drawable.pp1

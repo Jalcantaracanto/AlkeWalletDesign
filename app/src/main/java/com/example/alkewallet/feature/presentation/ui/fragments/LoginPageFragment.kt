@@ -49,8 +49,14 @@ class LoginPageFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener { emailCheck() }
         binding.txtRegister.setOnClickListener { navController.navigate(R.id.signupPageFragment) }
+
+        Log.d("TESTING", "USUARIOS: ${alkeViewModel.users.value}")
+        Log.d("TESTING", "USUARIOS: ${transactionViewModel.transactions.value}")
     }
 
+    /**
+     * Esta funcion se encarga de validar el email y la contraseña del usuario
+     */
     fun emailCheck() {
 
         val txtEmail = binding.textInputEmail.editText?.text.toString()

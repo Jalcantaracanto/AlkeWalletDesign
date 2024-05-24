@@ -8,4 +8,16 @@ data class User(
     val userPassword: String,
     val wallet: Wallet,
     val imgUser: String = ""
-)
+){
+    companion object {
+        val EMPTY = User(
+            userId = -1,
+            userName = "",
+            userLastName = "",
+            userEmail = "",
+            userPassword = "",
+            wallet = Wallet.EMPTY,
+            imgUser = ""
+        )
+    }
+}
