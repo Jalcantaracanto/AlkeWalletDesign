@@ -14,6 +14,13 @@ Cuarto trabajo realizado para bootcammp fullstack android. Se realiza para adqui
  A través de una cuarta solicitud, se solicito realizar la estructura de la wallet, donde implementare MVVM, utilizando capa de datos, casos de uso, viewModel, adaptadores hasta pintar la vista.
 </p>
 
+# Uso
+<p align="justify">
+ Al iniciar el app, puedes tanto crear una cuenta o loguear con una cuenta creada.
+- Yara@example.com / 123
+</p>
+
+
 
 # Estado del Proyecto
 <p align="justify">
