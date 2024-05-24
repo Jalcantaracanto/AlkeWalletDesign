@@ -14,6 +14,12 @@ Tercer trabajo realizado para bootcammp fullstack android. Se realiza para adqui
  A través de una tercera solicitud, se solicitó realizar la interfaz de Alke Wallet. Para esto se debe utilizar Android studio donde utilizaremos actividades y vistas con XML para su diseño.
 </p>
 
+# Uso
+<p align="justify">
+ Al iniciar el app, puedes tanto crear una cuenta o loguear con una cuenta creada.
+- Yara@example.com / 123
+</p>
+
 
 # Estado del Proyecto
 <p align="justify">
